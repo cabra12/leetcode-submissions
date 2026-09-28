@@ -1,14 +1,14 @@
 class Solution {
     public boolean isHappy(int n) {
+        int slow = n;
+        int fast = getNextNum(n);
 
-        HashSet<Integer> set = new HashSet<>();
-        
-        while(n != 1 && !set.contains(n)) {
-            set.add(n);
-            n = getNextNum(n);
+        while(fast != 1 && slow != fast) {
+            slow = getNextNum(slow);
+            fast = getNextNum(getNextNum(fast));
         }
 
-        return n == 1;
+        return fast == 1;
     }
 
     private int getNextNum(int n) {
